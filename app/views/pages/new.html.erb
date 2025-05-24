@@ -1,0 +1,11 @@
+<h1 class="text-3xl font-bold mb-6">Let's scrape a page!</h1>
+
+<%= form_with(model: @page, class: "space-y-4") do |f| %>
+  <div>
+    <%= f.label :url, class: "block font-medium" %>
+    <%= f.url_field :url, class: "border rounded w-full p-2" %>
+  </div>
+
+  <%= f.submit "Scrape!", class: "bg-green-600 text-white px-4 py-2 rounded" %>
+  <%= link_to "Back", pages_path, class: "text-blue-700 underline" %>
+<% end %>

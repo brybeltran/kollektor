@@ -1,0 +1,32 @@
+<%= turbo_stream_from current_user %>
+
+<h1 class="text-3xl font-bold mb-6">Kollektor: Your scraped pages</h1>
+
+<%= link_to "Add page", new_page_path,
+            class: "bg-blue-600 text-white px-3 py-1 rounded" %>
+
+<table class="table-auto mt-6 w-full text-left">
+  <thead>
+    <tr class="border-b">
+      <th class="py-2">Name</th>
+      <th class="py-2 text-right">Total links</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr class="border-b">
+        <td class="py-2">
+          <%= link_to(page.title.presence || page.url,
+                      page_path(page),
+                      class: "text-blue-700 underline") %>
+          <div class="text-xs text-gray-500"><%= page.url %></div>
+        </td>
+        <td class="py-2 text-right"><%= page.links_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="flex justify-center mt-4">
+  <%== pagy_nav(@pagy) %>
+</div>
